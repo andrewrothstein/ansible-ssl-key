@@ -1,0 +1,30 @@
+---
+- name: install SSL key
+  copy: >-
+    owner=root
+    group=root
+    mode=400
+    src={{pki_dir}}/private/{{inventory_hostname}}.key
+    dest=/etc/pki/tls/private/{{inventory_hostname}}.key
+
+- name: install SSL certificate
+  copy: >-
+    owner=root
+    group=root
+    mode=400
+    src={{pki_dir}}/issued/{{inventory_hostname}}.crt
+    dest=/etc/pki/tls/certs/{{inventory_hostname}}.crt
+
+- name: install root CA certificate
+  copy: >-
+    owner=root
+    group=root
+    mode=400
+    src={{pki_dir}}/ca.crt
+    dest=/etc/pki/ca-trust/source/anchors/ca.crt
+  register: cacertinstalled
+
+- name: update CA trust...
+  command: 'update-ca-trust extract'
+  when: cacertinstalled.changed
+  
