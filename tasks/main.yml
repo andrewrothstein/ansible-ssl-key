@@ -4,24 +4,24 @@
     owner=root
     group=root
     mode=400
-    src={{pki_dir}}/private/{{inventory_hostname}}.key
-    dest=/etc/pki/tls/private/{{inventory_hostname}}.key
+    src={{pki_key}}
+    dest=/etc/pki/tls/private/{{pki_key_file}}
 
 - name: install SSL certificate
   copy: >-
     owner=root
     group=root
     mode=400
-    src={{pki_dir}}/issued/{{inventory_hostname}}.crt
-    dest=/etc/pki/tls/certs/{{inventory_hostname}}.crt
+    src={{pki_cert}}
+    dest=/etc/pki/tls/certs/{{pki_cert_file}}
 
 - name: install root CA certificate
   copy: >-
     owner=root
     group=root
     mode=400
-    src={{pki_dir}}/ca.crt
-    dest=/etc/pki/ca-trust/source/anchors/ca.crt
+    src={{pki_ca_cert}}
+    dest=/etc/pki/ca-trust/source/anchors/{{pki_ca_file}}
   register: cacertinstalled
 
 - name: update CA trust...
