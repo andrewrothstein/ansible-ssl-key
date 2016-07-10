@@ -1,30 +1,51 @@
 ---
+- name: resolve platform specific vars
+  include_vars: "{{item}}"
+  with_first_found:
+    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
+    - "{{ansible_distribution}}.yml"
+    - "{{ansible_os_family}}.yml"
+
+- name: install ca-certificates
+  become: yes
+  become_user: root
+  with_items: '{{ssl_key_cacert_pkgs}}'
+  package: name={{item}} state=present
+    
 - name: install SSL key
+  become: yes
+  become_user: root
   copy: >-
     owner=root
     group=root
     mode=400
     src={{pki_key}}
-    dest=/etc/pki/tls/private/{{pki_key_file}}
+    dest={{ssl_key_pki_key_dir}}/{{pki_key_file}}
 
 - name: install SSL certificate
+  become: yes
+  become_user: root
   copy: >-
     owner=root
     group=root
     mode=400
     src={{pki_cert}}
-    dest=/etc/pki/tls/certs/{{pki_cert_file}}
+    dest={{ssl_key_pki_cert_dir}}/{{pki_cert_file}}
 
 - name: install root CA certificate
+  become: yes
+  become_user: root
   copy: >-
     owner=root
     group=root
     mode=400
     src={{pki_ca_cert}}
-    dest=/etc/pki/ca-trust/source/anchors/{{pki_ca_file}}
-  register: cacertinstalled
+    dest={{ssl_key_pki_cacert_dir}}/{{pki_ca_file}}
+  register: ssl_key_cacertinstalled
 
 - name: update CA trust...
-  command: 'update-ca-trust extract'
-  when: cacertinstalled.changed
+  become: yes
+  become_user: root
+  command: '{{ssl_key_cacert_update_cmd}}'
+  when: ssl_key_cacertinstalled|changed
   
