@@ -9,7 +9,7 @@
 - name: install ca-certificates
   become: yes
   become_user: root
-  with_items: '{{ssl_key_cacert_pkgs}}'
+  with_items: '{{ssl_key_pkgs}}'
   package: name={{item}} state=present
     
 - name: install SSL key

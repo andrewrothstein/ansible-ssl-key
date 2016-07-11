@@ -1,5 +1,5 @@
 ---
-ssl_key_cacert_pkgs :
+ssl_key_pkgs :
   - ca-certificates
 ssl_key_pki_cacert_dir: /etc/ssl/certs
 ssl_key_pki_cert_dir : /etc/ssl/certs
