@@ -1,10 +1,10 @@
 ---
 # vars file for ssl-key
 pki_key_file : '{{inventory_hostname}}{{pki_key_suffix}}'
-pki_key : '{{pki_dir}}/{{pki_keys_subdir}}/{{pki_key_file}}'
+pki_key : '{{pki_dir}}/{{pki_key_file}}'
 
 pki_cert_file : '{{inventory_hostname}}{{pki_cert_suffix}}'
-pki_cert : '{{pki_dir}}/{{pki_certs_subdir}}/{{pki_cert_file}}'
+pki_cert : '{{pki_dir}}/{{pki_cert_file}}'
 
 pki_ca_file : 'ca{{pki_cert_suffix}}'
-pki_ca_cert : '{{pki_dir}}/{{pki_ca_cert_subdir}}/{{pki_ca_file}}'
+pki_ca_cert : '{{pki_dir}}/{{pki_ca_file}}'

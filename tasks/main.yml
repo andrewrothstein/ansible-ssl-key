@@ -16,8 +16,6 @@
   become: yes
   become_user: root
   copy: >-
-    owner=root
-    group=root
     mode=400
     src={{pki_key}}
     dest={{ssl_key_pki_key_dir}}/{{pki_key_file}}

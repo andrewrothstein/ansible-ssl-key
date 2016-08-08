@@ -1,8 +1,4 @@
 ---
-# defaults file for ssl-key
-pki_key_suffix: '.key'
-pki_cert_suffix: '.crt'
-
-pki_keys_subdir : 'private'
-pki_certs_subdir : 'issued'
-pki_ca_cert_subdir : '.'
+pki_dir: "~/pki"
+pki_key_suffix: "-key.pem"
+pki_cert_suffix: ".pem"
