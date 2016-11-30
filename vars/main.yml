@@ -5,6 +5,3 @@ pki_key : '{{pki_dir}}/{{pki_key_file}}'
 
 pki_cert_file : '{{inventory_hostname}}{{pki_cert_suffix}}'
 pki_cert : '{{pki_dir}}/{{pki_cert_file}}'
-
-pki_ca_file : 'ca{{pki_cert_suffix}}'
-pki_ca_cert : '{{pki_dir}}/{{pki_ca_file}}'

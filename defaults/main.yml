@@ -1,4 +1,5 @@
 ---
 pki_dir: ~/pki
 pki_key_suffix: -key.pem
+pki_ca_cert_prefix: ca
 pki_cert_suffix: .pem

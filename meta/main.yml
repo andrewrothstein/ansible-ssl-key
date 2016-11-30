@@ -30,5 +30,6 @@ dependencies:
   - role: andrewrothstein.trust-ca
     version: v1.0.5
     trust_ca_pki_dir: '{{pki_dir}}'
+    trust_ca_pki_prefix: '{{pki_ca_cert_prefix}}'
     trust_ca_pki_suffix: '{{pki_cert_suffix}}'
 
