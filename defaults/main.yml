@@ -1,4 +1,4 @@
 ---
-pki_dir: "~/pki"
-pki_key_suffix: "-key.pem"
-pki_cert_suffix: ".pem"
+pki_dir: ~/pki
+pki_key_suffix: -key.pem
+pki_cert_suffix: .pem

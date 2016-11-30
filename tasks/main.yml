@@ -24,26 +24,7 @@
   become: yes
   become_user: root
   copy: >-
-    owner=root
-    group=root
     mode=400
     src={{pki_cert}}
     dest={{ssl_key_pki_cert_dir}}/{{pki_cert_file}}
-
-- name: install root CA certificate
-  become: yes
-  become_user: root
-  copy: >-
-    owner=root
-    group=root
-    mode=400
-    src={{pki_ca_cert}}
-    dest={{ssl_key_pki_cacert_dir}}/{{pki_ca_file}}
-  register: ssl_key_cacertinstalled
-
-- name: update CA trust...
-  become: yes
-  become_user: root
-  command: '{{ssl_key_cacert_update_cmd}}'
-  when: ssl_key_cacertinstalled|changed
   

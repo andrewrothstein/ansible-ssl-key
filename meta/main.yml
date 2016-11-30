@@ -9,16 +9,26 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 7
+        - all
     - name: Fedora
       versions:
-        - 21
+        - all
     - name: Ubuntu
       versions:
-        - trusty
+        - all
+    - name: Alpine
+      versions:
+        - all
 
   galaxy_tags:
-    - development
+    - pki
+    - tls
+    - ssl
+    - ca
 
-dependencies: []
-  
+dependencies:
+  - role: andrewrothstein.trust-ca
+    version: v1.0.5
+    trust_ca_pki_dir: '{{pki_dir}}'
+    trust_ca_pki_suffix: '{{pki_cert_suffix}}
+
