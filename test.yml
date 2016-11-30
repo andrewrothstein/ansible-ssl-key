@@ -2,3 +2,4 @@
 - hosts: all
   roles:
     - role: '{{playbook_dir}}'
+      pki_dir: '{{playbook_dir}}'
