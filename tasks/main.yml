@@ -10,21 +10,23 @@
   become: yes
   become_user: root
   with_items: '{{ssl_key_pkgs}}'
-  package: name={{item}} state=present
+  package:
+    name: '{{item}}'
+    state: present
     
 - name: install SSL key
   become: yes
   become_user: root
-  copy: >-
-    mode=400
-    src={{pki_key}}
-    dest={{ssl_key_pki_key_dir}}/{{pki_key_file}}
+  copy:
+    mode: 0400
+    src: '{{pki_key}}'
+    dest: '{{ssl_key_pki_key_dir}}/{{pki_key_file}}'
 
 - name: install SSL certificate
   become: yes
   become_user: root
-  copy: >-
-    mode=400
-    src={{pki_cert}}
-    dest={{ssl_key_pki_cert_dir}}/{{pki_cert_file}}
+  copy:
+    mode: 0400
+    src: '{{pki_cert}}'
+    dest: '{{ssl_key_pki_cert_dir}}/{{pki_cert_file}}'
   
