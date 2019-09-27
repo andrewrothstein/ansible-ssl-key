@@ -1,17 +1,20 @@
 ---
 - name: resolve platform specific vars
-  include_vars: "{{item}}"
+  include_vars: '{{ item }}'
   with_first_found:
-    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
-    - "{{ansible_distribution}}.yml"
-    - "{{ansible_os_family}}.yml"
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
 
 - name: install ca-certificates
   become: yes
   become_user: root
-  with_items: '{{ssl_key_pkgs}}'
   package:
-    name: '{{item}}'
+    name: '{{ ssl_key_pkgs }}'
     state: present
     
 - name: install SSL key
@@ -19,14 +22,13 @@
   become_user: root
   copy:
     mode: 0400
-    src: '{{pki_key}}'
-    dest: '{{ssl_key_pki_key_dir}}/{{pki_key_file}}'
+    src: '{{ pki_key }}'
+    dest: '{{ ssl_key_pki_key_dir }}/{{ pki_key_file }}'
 
 - name: install SSL certificate
   become: yes
   become_user: root
   copy:
     mode: 0400
-    src: '{{pki_cert}}'
-    dest: '{{ssl_key_pki_cert_dir}}/{{pki_cert_file}}'
-  
+    src: '{{ pki_cert }}'
+    dest: '{{ ssl_key_pki_cert_dir }}/{{ pki_cert_file }}'

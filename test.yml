@@ -1,5 +1,5 @@
 ---
 - hosts: all
   roles:
-    - role: '{{playbook_dir}}'
-      pki_dir: '{{playbook_dir}}/test-pki'
+    - role: '{{ playbook_dir }}'
+      pki_dir: '{{ playbook_dir }}/test-pki'
